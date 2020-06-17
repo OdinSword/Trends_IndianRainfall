@@ -1,0 +1,8 @@
+import rioxarray
+import geopandas
+import xarray
+from shapely.geometry import mapping
+
+geodf = geopandas.read_file("/Path_to_shapefile")
+xds = rioxarray.open_rasterio("/Path_to_raster")
+clipped = xds.rio.clip(geodf.geometry.apply(mapping), geodf.crs)
